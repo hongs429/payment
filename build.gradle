@@ -1,0 +1,62 @@
+buildscript {
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.1.6"
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '3.3.4'
+    id 'java'
+}
+
+// 모든 하위 모듈들에 이 설정을 적용
+subprojects {
+    compileJava{
+        sourceCompatibility = '21'
+        targetCompatibility = '21'
+    }
+
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        // @ConfigurationProperties 또는 @Value로 주입하는 설정 값에 대해 IDE에서 자동 완성 기능을 제공
+        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+        annotationProcessor 'org.projectlombok:lombok'
+        implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'  // SpringDoc OpenAPI 3 + Swagger UI
+
+        //test
+        testCompileOnly 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
+        //개발자가 미리 정해 놓은 아키텍처 규칙을 코드에 적용하고, 해당 규칙이 잘 지켜지고 있는지 테스트를 통해 확인할 수 있게 해주는 도구
+        testImplementation 'com.tngtech.archunit:archunit-junit5:0.23.1'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    }
+
+    test {
+        useJUnitPlatform()
+        maxHeapSize = "1024m" // 원하는 만큼 변경 가능
+    }
+}
+
+bootRun {
+    enabled = false
+}
+
+// 빌드 시, 현재 모듈(root 모듈)의 .jar를 생성하지 않음
+bootJar {
+    enabled = false
+}
+
+bootBuildImage {
+    enabled = false
+}
