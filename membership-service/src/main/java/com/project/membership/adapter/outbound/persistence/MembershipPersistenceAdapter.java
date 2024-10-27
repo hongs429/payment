@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 @PersistenceAdapter
 @RequiredArgsConstructor
-public class MembershipPersistenceAdapter implements RegisterMembershipPort {
+public class MembershipPersistenceAdapter implements RegisterMembershipPort, FindMembershipPort {
 
     private final SpringDataMembershipRepository membershipRepository;
 
@@ -20,5 +20,10 @@ public class MembershipPersistenceAdapter implements RegisterMembershipPort {
                 membershipEmail,
                 membershipIsValid,
                 membershipIsCorp));
+    }
+
+    @Override
+    public MembershipEntity findMembership(Long membershipId) {
+        return membershipRepository.findByIdOrThrow(membershipId);
     }
 }
