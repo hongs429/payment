@@ -1,6 +1,9 @@
+plugins {
+    id 'com.palantir.docker' version '0.36.0'
+}
 
 group = 'com.project.membership'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 
 
 repositories {
@@ -13,7 +16,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation project(path: ':common')
-    runtimeOnly 'com.h2database:h2'
+//    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'mysql:mysql-connector-java:8.0.32'
 
 }
 
@@ -21,6 +25,31 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-bootJar.enabled = false
+docker {
+    println('---' + tasks.bootJar.outputs.files)
+    // 이미지 이름
+    name rootProject.name + '-' + project.name + ':' + version
+    // 어떤 도커 파일
+    dockerfile file('../Dockerfile')
+    // 어떤 파일들을 Dockerfile 에 복사할 것인가
+    files tasks.bootJar.outputs.files
+    // Dockerfile 에 전달할 인자
+    buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name])
+}
 
-jar.enabled = true
+
+bootRun {
+    enabled = true
+}
+
+bootJar {
+    enabled = true
+}
+
+bootBuildImage {
+    enabled = true
+}
+
+jar {
+    enabled = false
+}
