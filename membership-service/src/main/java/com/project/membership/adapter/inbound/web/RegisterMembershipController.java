@@ -1,10 +1,10 @@
 package com.project.membership.adapter.inbound.web;
 
 
+import com.project.common.WebAdapter;
 import com.project.membership.application.port.inbound.RegisterMembershipCommand;
 import com.project.membership.application.port.inbound.RegisterMembershipUseCase;
 import com.project.membership.domain.Membership;
-import common.WebAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

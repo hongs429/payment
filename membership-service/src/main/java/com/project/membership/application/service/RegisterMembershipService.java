@@ -1,11 +1,11 @@
 package com.project.membership.application.service;
 
+import com.project.common.UseCase;
 import com.project.membership.adapter.outbound.persistence.MembershipEntity;
 import com.project.membership.adapter.outbound.persistence.MembershipMapper;
 import com.project.membership.application.port.inbound.RegisterMembershipCommand;
 import com.project.membership.application.port.inbound.RegisterMembershipUseCase;
 import com.project.membership.application.port.outbound.RegisterMembershipPort;
-import common.UseCase;
 import com.project.membership.domain.Membership;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;

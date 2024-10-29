@@ -1,9 +1,9 @@
 package com.project.membership.adapter.inbound.web;
 
+import com.project.common.WebAdapter;
 import com.project.membership.application.port.inbound.FindMembershipQuery;
 import com.project.membership.application.port.inbound.FindMembershipUseCase;
 import com.project.membership.domain.Membership;
-import common.WebAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

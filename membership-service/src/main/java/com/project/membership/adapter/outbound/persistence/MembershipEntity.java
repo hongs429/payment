@@ -41,4 +41,12 @@ public class MembershipEntity {
                 .isCorp(isCorp)
                 .build();
     }
+
+    public void update(String name, String address, String email, Boolean isValid, Boolean isCorp) {
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.isValid = isValid;
+        this.isCorp = isCorp;
+    }
 }
