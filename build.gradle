@@ -60,3 +60,7 @@ bootJar {
 bootBuildImage {
     enabled = false
 }
+
+jar {
+    enabled = false
+}

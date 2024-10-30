@@ -23,7 +23,7 @@ import lombok.ToString;
 public class MembershipEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long membershipId;
 
     private String name;
