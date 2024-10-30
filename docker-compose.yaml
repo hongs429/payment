@@ -34,7 +34,6 @@ services:
       - SPRING_DATASOURCE_USERNAME=hongs
       - SPRING_DATASOURCE_PASSWORD=1234
       - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
-#      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.MySQLDialect
       - SPRING_JPA_OPEN-IN-VIEW=false
 networks:
   my-pay-network:
