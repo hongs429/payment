@@ -28,7 +28,8 @@ services:
       - "8081:8080"
     depends_on:
       - my-pay-mysql
-    #    restart: always
+    restart:
+      on-failure:5
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://my-pay-mysql:3306/my_pay?useSSL=false&allowPublicKeyRetrieval=true
       - SPRING_DATASOURCE_USERNAME=hongs
