@@ -2,7 +2,7 @@ package com.project.membership.application.service;
 
 
 import com.project.common.UseCase;
-import com.project.membership.adapter.outbound.persistence.MembershipEntity;
+import com.project.membership.adapter.outbound.persistence.MembershipJpaEntity;
 import com.project.membership.adapter.outbound.persistence.MembershipMapper;
 import com.project.membership.application.port.inbound.FindMembershipQuery;
 import com.project.membership.application.port.inbound.FindMembershipUseCase;
@@ -22,7 +22,7 @@ public class FindMembershipService implements FindMembershipUseCase {
     @Override
     public Membership findMembership(FindMembershipQuery query) {
 
-        MembershipEntity membership  = findMembershipPort.findMembership(query.getMembershipId());
+        MembershipJpaEntity membership  = findMembershipPort.findMembership(query.getMembershipId());
         return membershipMapper.toDomainEntity(membership);
     }
 }

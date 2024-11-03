@@ -14,10 +14,10 @@ public class MembershipPersistenceAdapter implements RegisterMembershipPort, Fin
     private final SpringDataMembershipRepository membershipRepository;
 
     @Override
-    public MembershipEntity createMembership(String membershipName, String membershipEmail, String membershipAddress,
-                                 Boolean membershipIsValid, Boolean membershipIsCorp) {
+    public MembershipJpaEntity createMembership(String membershipName, String membershipEmail, String membershipAddress,
+                                                Boolean membershipIsValid, Boolean membershipIsCorp) {
 
-        return membershipRepository.save(MembershipEntity.of(membershipName,
+        return membershipRepository.save(MembershipJpaEntity.of(membershipName,
                 membershipAddress,
                 membershipEmail,
                 membershipIsValid,
@@ -25,18 +25,18 @@ public class MembershipPersistenceAdapter implements RegisterMembershipPort, Fin
     }
 
     @Override
-    public MembershipEntity findMembership(Long membershipId) {
+    public MembershipJpaEntity findMembership(Long membershipId) {
         return membershipRepository.findByIdOrThrow(membershipId);
     }
 
     @Override
-    public MembershipEntity modifyMembership(Long membershipId, String membershipName, String membershipEmail,
-                                       String membershipAddress, Boolean membershipIsValid, Boolean membershipIsCorp) {
-        MembershipEntity membershipEntity = membershipRepository.findByIdOrThrow(membershipId);
+    public MembershipJpaEntity modifyMembership(Long membershipId, String membershipName, String membershipEmail,
+                                                String membershipAddress, Boolean membershipIsValid, Boolean membershipIsCorp) {
+        MembershipJpaEntity membershipJpaEntity = membershipRepository.findByIdOrThrow(membershipId);
 
-        membershipEntity.update(membershipName, membershipEmail, membershipAddress, membershipIsValid, membershipIsCorp);
+        membershipJpaEntity.update(membershipName, membershipEmail, membershipAddress, membershipIsValid, membershipIsCorp);
 
-        return membershipRepository.save(membershipEntity);
+        return membershipRepository.save(membershipJpaEntity);
 
     }
 }

@@ -31,11 +31,31 @@ services:
     restart:
       on-failure:5
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://my-pay-mysql:3306/my_pay?useSSL=false&allowPublicKeyRetrieval=true
-      - SPRING_DATASOURCE_USERNAME=hongs
-      - SPRING_DATASOURCE_PASSWORD=1234
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
-      - SPRING_JPA_OPEN-IN-VIEW=false
+      - SPRING_PROFILES_ACTIVE=docker
+#      - SPRING_DATASOURCE_URL=jdbc:mysql://my-pay-mysql:3306/my_pay?useSSL=false&allowPublicKeyRetrieval=true
+#      - SPRING_DATASOURCE_USERNAME=hongs
+#      - SPRING_DATASOURCE_PASSWORD=1234
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+#      - SPRING_JPA_OPEN-IN-VIEW=false
+
+
+  banking-service:
+    image: my-pay-banking-service:0.0.1
+    networks:
+      - my-pay-network
+    ports:
+      - "8082:8080"
+    depends_on:
+      - my-pay-mysql
+    restart:
+      on-failure:5
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+#      - SPRING_DATASOURCE_URL=jdbc:mysql://my-pay-mysql:3306/my_pay?useSSL=false&allowPublicKeyRetrieval=true
+#      - SPRING_DATASOURCE_USERNAME=hongs
+#      - SPRING_DATASOURCE_PASSWORD=1234
+#      - SPRING_JPA_HIBERNATE_DDL_AUTO=create-drop
+#      - SPRING_JPA_OPEN-IN-VIEW=false
 networks:
   my-pay-network:
     driver: bridge

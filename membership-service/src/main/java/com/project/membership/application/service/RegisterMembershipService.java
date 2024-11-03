@@ -1,7 +1,7 @@
 package com.project.membership.application.service;
 
 import com.project.common.UseCase;
-import com.project.membership.adapter.outbound.persistence.MembershipEntity;
+import com.project.membership.adapter.outbound.persistence.MembershipJpaEntity;
 import com.project.membership.adapter.outbound.persistence.MembershipMapper;
 import com.project.membership.application.port.inbound.RegisterMembershipCommand;
 import com.project.membership.application.port.inbound.RegisterMembershipUseCase;
@@ -25,7 +25,7 @@ public class RegisterMembershipService implements RegisterMembershipUseCase {
 
 
         // DB(external system) <- adapter <- port
-        MembershipEntity membership = registerMembershipPort.createMembership(command.getName(), command.getEmail(),
+        MembershipJpaEntity membership = registerMembershipPort.createMembership(command.getName(), command.getEmail(),
                 command.getAddress(), command.getIsValid(), command.getIsCorp());
 
         return membershipMapper.toDomainEntity(membership);

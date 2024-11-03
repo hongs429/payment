@@ -20,7 +20,7 @@ import lombok.ToString;
 @Builder
 @ToString(of = {"membershipId", "name", "address", "email", "isValid", "isCorp"})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class MembershipEntity {
+public class MembershipJpaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,8 +32,8 @@ public class MembershipEntity {
     private Boolean isValid;
     private Boolean isCorp;
 
-    public static MembershipEntity of(String name, String address, String email, Boolean isValid, Boolean isCorp) {
-        return MembershipEntity.builder()
+    public static MembershipJpaEntity of(String name, String address, String email, Boolean isValid, Boolean isCorp) {
+        return MembershipJpaEntity.builder()
                 .name(name)
                 .address(address)
                 .email(email)

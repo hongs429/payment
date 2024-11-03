@@ -2,7 +2,7 @@ package com.project.membership.application.service;
 
 
 import com.project.common.UseCase;
-import com.project.membership.adapter.outbound.persistence.MembershipEntity;
+import com.project.membership.adapter.outbound.persistence.MembershipJpaEntity;
 import com.project.membership.adapter.outbound.persistence.MembershipMapper;
 import com.project.membership.application.port.inbound.ModifyMembershipCommand;
 import com.project.membership.application.port.inbound.ModifyMembershipUseCase;
@@ -21,12 +21,12 @@ public class ModifyMembershipService implements ModifyMembershipUseCase {
 
     @Override
     public Membership modifyMembership(ModifyMembershipCommand command) {
-        MembershipEntity membershipEntity = modifyMembershipPort.modifyMembership(
+        MembershipJpaEntity membershipJpaEntity = modifyMembershipPort.modifyMembership(
                 command.getMembershipId(),
                 command.getName(),
                 command.getEmail(),
                 command.getAddress(), command.getIsValid(), command.getIsCorp());
 
-        return membershipMapper.toDomainEntity(membershipEntity);
+        return membershipMapper.toDomainEntity(membershipJpaEntity);
     }
 }

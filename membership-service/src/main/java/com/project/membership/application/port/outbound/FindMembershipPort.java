@@ -1,8 +1,8 @@
 package com.project.membership.application.port.outbound;
 
-import com.project.membership.adapter.outbound.persistence.MembershipEntity;
+import com.project.membership.adapter.outbound.persistence.MembershipJpaEntity;
 
 public interface FindMembershipPort {
 
-    MembershipEntity findMembership(Long membershipId);
+    MembershipJpaEntity findMembership(Long membershipId);
 }

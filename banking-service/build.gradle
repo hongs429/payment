@@ -2,7 +2,7 @@ plugins {
     id 'com.palantir.docker' version '0.36.0'
 }
 
-group = 'com.project.membership'
+group = 'com.project.banking'
 version = '0.0.1'
 
 
@@ -16,8 +16,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation project(path: ':common')
-    runtimeOnly 'com.h2database:h2'
     runtimeOnly 'mysql:mysql-connector-java:8.0.32'
+    runtimeOnly 'com.h2database:h2'
 
 }
 
